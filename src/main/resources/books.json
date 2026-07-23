@@ -1,0 +1,37 @@
+[
+  {
+    "id": 1,
+    "title": "Clean Code",
+    "year": 2008,
+    "totalCopies": 5,
+    "availableCopies": 3
+  },
+  {
+    "id": 2,
+    "title": "Effective Java",
+    "year": 2018,
+    "totalCopies": 4,
+    "availableCopies": 2
+  },
+  {
+    "id": 3,
+    "title": "The Pragmatic Programmer",
+    "year": 1999,
+    "totalCopies": 3,
+    "availableCopies": 1
+  },
+  {
+    "id": 4,
+    "title": "Design Patterns",
+    "year": 1994,
+    "totalCopies": 2,
+    "availableCopies": 2
+  },
+  {
+    "id": 5,
+    "title": "Programming Embedded Systems in C and C++",
+    "year": 1999,
+    "totalCopies": 3,
+    "availableCopies": 2
+  }
+]

@@ -1,0 +1,37 @@
+[
+  {
+    "bookId": 1,
+    "memberId": 1,
+    "borrowDate": "2026-06-01",
+    "dueDate": "2026-06-15",
+    "returned": false
+  },
+  {
+    "bookId": 99,
+    "memberId": 2,
+    "borrowDate": "2026-06-02",
+    "dueDate": "2026-06-16",
+    "returned": false
+  },
+  {
+    "bookId": 3,
+    "memberId": 99,
+    "borrowDate": "2026-06-03",
+    "dueDate": "2026-06-17",
+    "returned": false
+  },
+  {
+    "bookId": 4,
+    "memberId": 3,
+    "borrowDate": "2026-06-20",
+    "dueDate": "2026-06-10",
+    "returned": false
+  },
+  {
+    "bookId": 5,
+    "memberId": 4,
+    "borrowDate": "2026-06-04",
+    "dueDate": "2026-06-18",
+    "returned": false
+  }
+]

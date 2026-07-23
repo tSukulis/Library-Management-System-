@@ -1,0 +1,30 @@
+[
+  {
+    "bookId": 1,
+    "memberId": 100,
+    "borrowDate": "2026-07-01",
+    "dueDate": "2026-07-15",
+    "returned": false
+  },
+  {
+    "bookId": 2,
+    "memberId": 101,
+    "borrowDate": "2026-06-20",
+    "dueDate": "2026-07-04",
+    "returned": true
+  },
+  {
+    "bookId": 3,
+    "memberId": 102,
+    "borrowDate": "2026-07-10",
+    "dueDate": "2026-07-24",
+    "returned": false
+  },
+  {
+    "bookId": 5,
+    "memberId": 103,
+    "borrowDate": "2026-06-15",
+    "dueDate": "2026-06-29",
+    "returned": true
+  }
+]
