@@ -1,37 +1,702 @@
 [
   {
     "id": 1,
-    "title": "Clean Code",
-    "year": 2008,
-    "totalCopies": 5,
-    "availableCopies": 3
-  },
-  {
-    "id": 2,
-    "title": "Effective Java",
-    "year": 2018,
-    "totalCopies": 4,
-    "availableCopies": 2
-  },
-  {
-    "id": 3,
-    "title": "The Pragmatic Programmer",
-    "year": 1999,
-    "totalCopies": 3,
-    "availableCopies": 1
-  },
-  {
-    "id": 4,
-    "title": "Design Patterns",
-    "year": 1994,
+    "title": "Beginning Python",
+    "year": 2012,
     "totalCopies": 2,
     "availableCopies": 2
   },
   {
+    "id": 2,
+    "title": "Clean Linux",
+    "year": 2001,
+    "totalCopies": 4,
+    "availableCopies": 4
+  },
+  {
+    "id": 3,
+    "title": "Beginning Artificial Intelligence",
+    "year": 2022,
+    "totalCopies": 3,
+    "availableCopies": 3
+  },
+  {
+    "id": 4,
+    "title": "Modern Java",
+    "year": 2008,
+    "totalCopies": 3,
+    "availableCopies": 1
+  },
+  {
     "id": 5,
-    "title": "Programming Embedded Systems in C and C++",
+    "title": "Clean Cloud Computing",
+    "year": 2007,
+    "totalCopies": 2,
+    "availableCopies": 2
+  },
+  {
+    "id": 6,
+    "title": "Mastering Artificial Intelligence",
+    "year": 2009,
+    "totalCopies": 8,
+    "availableCopies": 7
+  },
+  {
+    "id": 7,
+    "title": "Applied Machine Learning",
+    "year": 1995,
+    "totalCopies": 6,
+    "availableCopies": 4
+  },
+  {
+    "id": 8,
+    "title": "Professional Algorithms",
+    "year": 2016,
+    "totalCopies": 8,
+    "availableCopies": 8
+  },
+  {
+    "id": 9,
+    "title": "Advanced Data Structures",
+    "year": 2016,
+    "totalCopies": 5,
+    "availableCopies": 3
+  },
+  {
+    "id": 10,
+    "title": "Practical C++",
+    "year": 2001,
+    "totalCopies": 8,
+    "availableCopies": 8
+  },
+  {
+    "id": 11,
+    "title": "Essential Software Testing",
+    "year": 1997,
+    "totalCopies": 6,
+    "availableCopies": 4
+  },
+  {
+    "id": 12,
+    "title": "Mastering Cybersecurity",
+    "year": 2002,
+    "totalCopies": 10,
+    "availableCopies": 10
+  },
+  {
+    "id": 13,
+    "title": "The Art of Git",
+    "year": 2013,
+    "totalCopies": 3,
+    "availableCopies": 3
+  },
+  {
+    "id": 14,
+    "title": "Foundations of Computer Architecture",
+    "year": 2007,
+    "totalCopies": 7,
+    "availableCopies": 5
+  },
+  {
+    "id": 15,
+    "title": "Mastering C++",
+    "year": 2009,
+    "totalCopies": 2,
+    "availableCopies": 2
+  },
+  {
+    "id": 16,
+    "title": "Professional Databases",
+    "year": 2009,
+    "totalCopies": 3,
+    "availableCopies": 3
+  },
+  {
+    "id": 17,
+    "title": "Foundations of Python",
+    "year": 2012,
+    "totalCopies": 8,
+    "availableCopies": 7
+  },
+  {
+    "id": 18,
+    "title": "Applied Software Testing",
+    "year": 2018,
+    "totalCopies": 4,
+    "availableCopies": 3
+  },
+  {
+    "id": 19,
+    "title": "Essential Embedded Systems",
+    "year": 1999,
+    "totalCopies": 6,
+    "availableCopies": 6
+  },
+  {
+    "id": 20,
+    "title": "Complete Algorithms",
+    "year": 2010,
+    "totalCopies": 10,
+    "availableCopies": 10
+  },
+  {
+    "id": 21,
+    "title": "Effective Cybersecurity",
+    "year": 2012,
+    "totalCopies": 8,
+    "availableCopies": 7
+  },
+  {
+    "id": 22,
+    "title": "The Art of Artificial Intelligence",
+    "year": 2015,
+    "totalCopies": 5,
+    "availableCopies": 4
+  },
+  {
+    "id": 23,
+    "title": "Foundations of C Programming",
+    "year": 1997,
+    "totalCopies": 5,
+    "availableCopies": 3
+  },
+  {
+    "id": 24,
+    "title": "Professional Operating Systems",
+    "year": 2012,
+    "totalCopies": 8,
+    "availableCopies": 8
+  },
+  {
+    "id": 25,
+    "title": "Practical Embedded Systems",
+    "year": 2008,
+    "totalCopies": 7,
+    "availableCopies": 7
+  },
+  {
+    "id": 26,
+    "title": "Beginning Web Development",
+    "year": 2024,
+    "totalCopies": 8,
+    "availableCopies": 6
+  },
+  {
+    "id": 27,
+    "title": "Effective Computer Networks",
+    "year": 2010,
+    "totalCopies": 4,
+    "availableCopies": 4
+  },
+  {
+    "id": 28,
+    "title": "Hands-On Computer Networks",
+    "year": 2020,
+    "totalCopies": 8,
+    "availableCopies": 7
+  },
+  {
+    "id": 29,
+    "title": "Essential Linux",
+    "year": 2026,
+    "totalCopies": 4,
+    "availableCopies": 4
+  },
+  {
+    "id": 30,
+    "title": "Practical C Programming",
+    "year": 2004,
+    "totalCopies": 3,
+    "availableCopies": 3
+  },
+  {
+    "id": 31,
+    "title": "Beginning Algorithms",
+    "year": 1999,
+    "totalCopies": 8,
+    "availableCopies": 6
+  },
+  {
+    "id": 32,
+    "title": "Reliable Git",
+    "year": 2011,
+    "totalCopies": 9,
+    "availableCopies": 8
+  },
+  {
+    "id": 33,
+    "title": "Hands-On Java",
+    "year": 2012,
+    "totalCopies": 3,
+    "availableCopies": 3
+  },
+  {
+    "id": 34,
+    "title": "Practical Databases",
+    "year": 2005,
+    "totalCopies": 8,
+    "availableCopies": 7
+  },
+  {
+    "id": 35,
+    "title": "Applied Java",
+    "year": 2006,
+    "totalCopies": 6,
+    "availableCopies": 6
+  },
+  {
+    "id": 36,
+    "title": "Hands-On Python",
+    "year": 2007,
+    "totalCopies": 6,
+    "availableCopies": 6
+  },
+  {
+    "id": 37,
+    "title": "Effective Software Testing",
+    "year": 1995,
+    "totalCopies": 4,
+    "availableCopies": 2
+  },
+  {
+    "id": 38,
+    "title": "Complete Operating Systems",
+    "year": 1996,
+    "totalCopies": 9,
+    "availableCopies": 9
+  },
+  {
+    "id": 39,
+    "title": "Practical Software Testing",
+    "year": 2010,
+    "totalCopies": 6,
+    "availableCopies": 3
+  },
+  {
+    "id": 40,
+    "title": "Modern Linux",
+    "year": 2000,
+    "totalCopies": 3,
+    "availableCopies": 3
+  },
+  {
+    "id": 41,
+    "title": "Mastering Web Development",
+    "year": 2003,
+    "totalCopies": 3,
+    "availableCopies": 2
+  },
+  {
+    "id": 42,
+    "title": "Effective Web Development",
+    "year": 2005,
+    "totalCopies": 10,
+    "availableCopies": 9
+  },
+  {
+    "id": 43,
+    "title": "Advanced Cloud Computing",
+    "year": 2008,
+    "totalCopies": 8,
+    "availableCopies": 7
+  },
+  {
+    "id": 44,
+    "title": "Professional Embedded Systems",
+    "year": 2020,
+    "totalCopies": 6,
+    "availableCopies": 6
+  },
+  {
+    "id": 45,
+    "title": "Beginning Software Testing",
+    "year": 2023,
+    "totalCopies": 9,
+    "availableCopies": 7
+  },
+  {
+    "id": 46,
+    "title": "Practical Linux",
+    "year": 1999,
+    "totalCopies": 5,
+    "availableCopies": 5
+  },
+  {
+    "id": 47,
+    "title": "Essential Java",
+    "year": 2009,
+    "totalCopies": 10,
+    "availableCopies": 9
+  },
+  {
+    "id": 48,
+    "title": "Complete Linux",
+    "year": 1999,
+    "totalCopies": 2,
+    "availableCopies": 1
+  },
+  {
+    "id": 49,
+    "title": "Mastering C Programming",
+    "year": 1999,
+    "totalCopies": 5,
+    "availableCopies": 4
+  },
+  {
+    "id": 50,
+    "title": "The Art of C Programming",
+    "year": 1999,
+    "totalCopies": 7,
+    "availableCopies": 5
+  },
+  {
+    "id": 51,
+    "title": "Hands-On Linux",
+    "year": 2026,
+    "totalCopies": 6,
+    "availableCopies": 6
+  },
+  {
+    "id": 52,
+    "title": "Clean Artificial Intelligence",
+    "year": 2025,
+    "totalCopies": 4,
+    "availableCopies": 4
+  },
+  {
+    "id": 53,
+    "title": "Clean Web Development",
+    "year": 2007,
+    "totalCopies": 8,
+    "availableCopies": 8
+  },
+  {
+    "id": 54,
+    "title": "Practical Python",
+    "year": 2017,
+    "totalCopies": 8,
+    "availableCopies": 4
+  },
+  {
+    "id": 55,
+    "title": "Reliable Maven",
+    "year": 1998,
+    "totalCopies": 9,
+    "availableCopies": 8
+  },
+  {
+    "id": 56,
+    "title": "Modern Git",
+    "year": 2001,
+    "totalCopies": 7,
+    "availableCopies": 7
+  },
+  {
+    "id": 57,
+    "title": "Clean Embedded Systems",
+    "year": 2023,
+    "totalCopies": 5,
+    "availableCopies": 4
+  },
+  {
+    "id": 58,
+    "title": "Effective Maven",
+    "year": 2012,
+    "totalCopies": 4,
+    "availableCopies": 3
+  },
+  {
+    "id": 59,
+    "title": "Applied Linux",
+    "year": 2023,
+    "totalCopies": 3,
+    "availableCopies": 2
+  },
+  {
+    "id": 60,
+    "title": "Professional Artificial Intelligence",
+    "year": 1998,
+    "totalCopies": 3,
+    "availableCopies": 3
+  },
+  {
+    "id": 61,
+    "title": "Foundations of Java",
+    "year": 2010,
+    "totalCopies": 3,
+    "availableCopies": 1
+  },
+  {
+    "id": 62,
+    "title": "Applied Web Development",
+    "year": 2020,
+    "totalCopies": 5,
+    "availableCopies": 5
+  },
+  {
+    "id": 63,
+    "title": "Effective Git",
+    "year": 2019,
+    "totalCopies": 2,
+    "availableCopies": 1
+  },
+  {
+    "id": 64,
+    "title": "Advanced Cybersecurity",
+    "year": 2022,
+    "totalCopies": 6,
+    "availableCopies": 6
+  },
+  {
+    "id": 65,
+    "title": "Effective Embedded Systems",
+    "year": 2008,
+    "totalCopies": 6,
+    "availableCopies": 6
+  },
+  {
+    "id": 66,
+    "title": "Modern Machine Learning",
+    "year": 1998,
+    "totalCopies": 10,
+    "availableCopies": 10
+  },
+  {
+    "id": 67,
+    "title": "Mastering Operating Systems",
+    "year": 1998,
+    "totalCopies": 2,
+    "availableCopies": 2
+  },
+  {
+    "id": 68,
+    "title": "Complete Web Development",
+    "year": 2005,
+    "totalCopies": 10,
+    "availableCopies": 10
+  },
+  {
+    "id": 69,
+    "title": "Modern Cloud Computing",
+    "year": 2006,
+    "totalCopies": 3,
+    "availableCopies": 1
+  },
+  {
+    "id": 70,
+    "title": "Practical Computer Architecture",
+    "year": 2010,
+    "totalCopies": 3,
+    "availableCopies": 2
+  },
+  {
+    "id": 71,
+    "title": "Reliable Python",
+    "year": 1997,
+    "totalCopies": 5,
+    "availableCopies": 5
+  },
+  {
+    "id": 72,
+    "title": "Complete C++",
+    "year": 2015,
+    "totalCopies": 8,
+    "availableCopies": 7
+  },
+  {
+    "id": 73,
+    "title": "The Art of Computer Networks",
+    "year": 2015,
+    "totalCopies": 5,
+    "availableCopies": 4
+  },
+  {
+    "id": 74,
+    "title": "Clean Computer Networks",
+    "year": 2003,
+    "totalCopies": 8,
+    "availableCopies": 7
+  },
+  {
+    "id": 75,
+    "title": "Beginning Databases",
+    "year": 2015,
+    "totalCopies": 9,
+    "availableCopies": 9
+  },
+  {
+    "id": 76,
+    "title": "The Art of C++",
+    "year": 2024,
+    "totalCopies": 2,
+    "availableCopies": 1
+  },
+  {
+    "id": 77,
+    "title": "Complete Machine Learning",
     "year": 1999,
     "totalCopies": 3,
     "availableCopies": 2
+  },
+  {
+    "id": 78,
+    "title": "Hands-On Embedded Systems",
+    "year": 2011,
+    "totalCopies": 10,
+    "availableCopies": 10
+  },
+  {
+    "id": 79,
+    "title": "The Art of Linux",
+    "year": 2013,
+    "totalCopies": 7,
+    "availableCopies": 7
+  },
+  {
+    "id": 80,
+    "title": "Foundations of Artificial Intelligence",
+    "year": 1995,
+    "totalCopies": 6,
+    "availableCopies": 5
+  },
+  {
+    "id": 81,
+    "title": "Advanced Python",
+    "year": 2011,
+    "totalCopies": 4,
+    "availableCopies": 4
+  },
+  {
+    "id": 82,
+    "title": "Advanced Computer Architecture",
+    "year": 2016,
+    "totalCopies": 5,
+    "availableCopies": 5
+  },
+  {
+    "id": 83,
+    "title": "Hands-On Web Development",
+    "year": 1998,
+    "totalCopies": 6,
+    "availableCopies": 5
+  },
+  {
+    "id": 84,
+    "title": "Practical Maven",
+    "year": 1997,
+    "totalCopies": 6,
+    "availableCopies": 5
+  },
+  {
+    "id": 85,
+    "title": "Modern Operating Systems",
+    "year": 2011,
+    "totalCopies": 4,
+    "availableCopies": 4
+  },
+  {
+    "id": 86,
+    "title": "Hands-On Maven",
+    "year": 1995,
+    "totalCopies": 10,
+    "availableCopies": 10
+  },
+  {
+    "id": 87,
+    "title": "The Art of Data Structures",
+    "year": 1997,
+    "totalCopies": 10,
+    "availableCopies": 10
+  },
+  {
+    "id": 88,
+    "title": "Foundations of Software Testing",
+    "year": 2004,
+    "totalCopies": 10,
+    "availableCopies": 10
+  },
+  {
+    "id": 89,
+    "title": "Reliable Data Structures",
+    "year": 2014,
+    "totalCopies": 2,
+    "availableCopies": 2
+  },
+  {
+    "id": 90,
+    "title": "Essential C Programming",
+    "year": 2008,
+    "totalCopies": 7,
+    "availableCopies": 7
+  },
+  {
+    "id": 91,
+    "title": "Beginning Linux",
+    "year": 2017,
+    "totalCopies": 3,
+    "availableCopies": 3
+  },
+  {
+    "id": 92,
+    "title": "The Art of Maven",
+    "year": 2010,
+    "totalCopies": 4,
+    "availableCopies": 3
+  },
+  {
+    "id": 93,
+    "title": "Foundations of Algorithms",
+    "year": 2021,
+    "totalCopies": 4,
+    "availableCopies": 3
+  },
+  {
+    "id": 94,
+    "title": "Modern Algorithms",
+    "year": 2021,
+    "totalCopies": 7,
+    "availableCopies": 7
+  },
+  {
+    "id": 95,
+    "title": "Professional Linux",
+    "year": 2005,
+    "totalCopies": 6,
+    "availableCopies": 6
+  },
+  {
+    "id": 96,
+    "title": "Professional Python",
+    "year": 1997,
+    "totalCopies": 8,
+    "availableCopies": 6
+  },
+  {
+    "id": 97,
+    "title": "Foundations of Web Development",
+    "year": 2007,
+    "totalCopies": 5,
+    "availableCopies": 3
+  },
+  {
+    "id": 98,
+    "title": "Foundations of Cybersecurity",
+    "year": 2014,
+    "totalCopies": 7,
+    "availableCopies": 7
+  },
+  {
+    "id": 99,
+    "title": "Foundations of Linux",
+    "year": 1996,
+    "totalCopies": 5,
+    "availableCopies": 2
+  },
+  {
+    "id": 100,
+    "title": "Beginning Embedded Systems",
+    "year": 2016,
+    "totalCopies": 8,
+    "availableCopies": 8
   }
 ]
