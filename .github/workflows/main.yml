@@ -22,4 +22,4 @@ jobs:
           java-version: '25'
 
       - name: Build jar
-        run: mvn package 
+        run: mvn -B package --file pom.xml
