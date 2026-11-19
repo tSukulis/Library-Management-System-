@@ -1,37 +1,32 @@
-name: ci_cd
+name: CI/CD
 
 on:
   push:
     branches: [main]
-  pull_request: 
+  merge_group:
     branches: [main]
 
-
-jobs: 
-  Test-Deploy:
+jobs:
+  Build-Deploy:
     runs-on: ubuntu-latest
 
     steps:
+      - name: checkout repo
+        uses: actions/checkout@v7
 
-    - name: checkout repo
-      uses: actions/checkout@v7
-      
-    - name: set up java
-      uses: actions/setup-java@v6
-      with:
-        distribution: temurin
-        java-version: '25'
-        server-id: azure
-        server-username-env-var: MAVEN_USERNAME
-        server-password-env-var: MAVEN_TOKEN
-        settings-path: ${{github.workspace}}
+      - name: set up java
+        uses: actions/setup-java@v6
+        with:
+          distribution: temurin
+          java-version: '25'
+          cache: maven
+          server-id: azure
+          server-username-env-var: MAVEN_USERNAME
+          server-password-env-var: MAVEN_TOKEN
+          settings-path: ${{github.workspace}}
 
-    - name: Build and deploy
-      
-      run: mvn -B deploy --file pom.xml -s $GITHUB_WORKSPACE/settings.xml
-      env:
-        MAVEN_USERNAME: ${{secrets.MAVEN_USERNAME}}
-        MAVEN_TOKEN: ${{secrets.MAVEN_TOKEN}}
-
-     
-        
+      - name: Deploy
+        run: mvn -B deploy -s $GITHUB_WORKSPACE/settings.xml
+        env:
+          MAVEN_USERNAME: ${{secrets.MAVEN_USERNAME}}
+          MAVEN_TOKEN: ${{secrets.MAVEN_TOKEN}}
