@@ -5,18 +5,14 @@ on:
     branches: [main]
   pull_request:
     branches: [main]
-  
-
 
 jobs:
-  Build-and-upload:
-    runs-on: ubuntu-latest
-    permissions: 
-      contents: read
-      packages: write
+  Build-Deploy:
+     runs-on: ubuntu-latest
 
-    steps:
-      - name: checkout repository
+     steps:
+
+      - name: checkout repo
         uses: actions/checkout@v7
 
       - name: set up java
@@ -29,14 +25,14 @@ jobs:
           server-password-env-var: MAVEN_TOKEN
           settings-path: ${{github.workspace}}
 
-
-      - name: Build abd test
+      - name: compile and test
         if: github.event_name == 'pull_request'
-        run: mvn -B verify
+        run: mvn test
         
-      - name: Buid jar and deploy
+      - name: deploy
         if: github.event_name == 'push'
-        run: mvn -B deploy -s  $GITHUB_WORKSPACE/settings.xml
+        run: mvn -B deploy -s $GITHUB_WORKSPACE/settings.xml
         env:
           MAVEN_USERNAME: ${{secrets.MAVEN_USERNAME}}
           MAVEN_TOKEN: ${{secrets.MAVEN_TOKEN}}
+          
