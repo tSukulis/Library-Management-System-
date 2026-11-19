@@ -25,7 +25,6 @@ public class Loan {
         if(book == null || member == null)
             throw new IllegalArgumentException("Loan cannot be done.");
 
-
         this.book = book;
         this.member = member;
         this.borrowDate = borrowDate;
