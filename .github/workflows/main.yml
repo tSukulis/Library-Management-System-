@@ -10,7 +10,7 @@ on:
 
 jobs:
   Build-and-upload:
-    runs-on: uubuntu-latest
+    runs-on: ubuntu-latest
     permissions: 
       contents: read
       packages: write
@@ -23,13 +23,19 @@ jobs:
         uses: actions/setup-java@v6
         with:
           distribution: temurin
-          java-version: '25'
+          java-version: '21'
           server-id: azure
-          server-username: MAVEN_USERNAME
-          server-password: MAVEN_TOKEN
+          server-username-env-var: MAVEN_USERNAME
+          server-password-env-var: MAVEN_TOKEN
           settings-path: ${{github.workspace}}
 
+
+      - name: Build abd test
+        if: github.event_name == 'pull_request'
+        run: mvn -B verify
+        
       - name: Buid jar and deploy
+        if: github.event_name == 'push'
         run: mvn deploy -s  $GITHUB_WORKSPACE/settings.xml
         env:
           MAVEN_USERNAME: ${{secrets.MAVEN_USERNAME}}
