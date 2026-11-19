@@ -24,6 +24,7 @@ jobs:
           server-username-env-var: MAVEN_USERNAME
           server-password-env-var: MAVEN_TOKEN
           settings-path: ${{github.workspace}}
+          cache: maven
 
       - name: compile and test
         if: github.event_name == 'pull_request'
