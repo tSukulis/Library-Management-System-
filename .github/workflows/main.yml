@@ -3,7 +3,7 @@ name: CI/CD
 on:
   push:
     branches: [main]
-  pull_request: 
+  pull_request:
     branches: [main]
 
 jobs:
@@ -19,17 +19,15 @@ jobs:
         with:
           distribution: temurin
           java-version: '25'
-          cache: maven
           server-id: azure
           server-username-env-var: MAVEN_USERNAME
           server-password-env-var: MAVEN_TOKEN
           settings-path: ${{github.workspace}}
 
-      - name: Build and Test
+      - name: Build-Test
         if: github.event_name == 'pull_request'
-        run: mvn -B verify
+        run: mvn -B verify --file pom.xml
 
-        
       - name: Deploy
         if: github.event_name == 'push'
         run: mvn -B deploy -s $GITHUB_WORKSPACE/settings.xml
