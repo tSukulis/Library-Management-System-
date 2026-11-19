@@ -25,7 +25,13 @@ jobs:
           server-password-env-var: MAVEN_TOKEN
           settings-path: ${{github.workspace}}
 
+      - name: Build and Test
+        if: github.event_name == 'pull_request'
+        run: mvn -B verify
+
+        
       - name: Deploy
+        if: github.event_name == 'push'
         run: mvn -B deploy -s $GITHUB_WORKSPACE/settings.xml
         env:
           MAVEN_USERNAME: ${{secrets.MAVEN_USERNAME}}
