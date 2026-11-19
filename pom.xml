@@ -55,4 +55,17 @@
         </plugins>
     </build>
 
+    <distributionManagement>
+         <repository>
+                    <id>azure</id>
+                    <url>https://pkgs.dev.azure.com/tsoukoulis/8df8af67-225d-480d-b726-16b24bfd71cd/_packaging/maven-test/maven/v1</url>
+                    <releases>
+                           <enabled>true</enabled>
+                    </releases>
+                    <snapshots>
+                           <enabled>true</enabled>
+                    </snapshots>
+         </repository>
+</distributionManagement>
+
 </project>
