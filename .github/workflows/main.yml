@@ -36,4 +36,12 @@ jobs:
         env:
           MAVEN_USERNAME: ${{secrets.MAVEN_USERNAME}}
           MAVEN_TOKEN: ${{secrets.MAVEN_TOKEN}}
+
+
+      - name: Publish Test Results
+        uses: EnricoMi/publish-unit-test-result-action@v2
+        if: (!cancelled())
+        with:
+          files:
+            target/surefire-reports/TEST-*.xml
           
