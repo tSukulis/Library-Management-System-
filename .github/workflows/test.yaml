@@ -36,12 +36,24 @@ jobs:
         run: mvn -B test --file pom.xml
 
 
-      - name: Publish Test Results
+      - name: Publish Test Results (ubuntu)
         uses: EnricoMi/publish-unit-test-result-action@v2
-        if: (!cancelled())
+        if: ${{ !cancelled() && runner.os == 'ubuntu-latest'}}
         with:
           files: 
             target/surefire-reports/TEST-*.xml
+
+      - name: Publish Test Results (macOS)
+        if: ${{ !cancelled() && runner.os == 'macOS' }}
+        uses: EnricoMi/publish-unit-test-result-action/macos@v2
+        with:
+          files: target/surefire-reports/TEST-*.xml
+
+      - name: Publish Test Results (windows)
+        if: ${{ !cancelled() && runner.os == 'windows-latest' }}
+        uses: EnricoMi/publish-unit-test-result-action/windows@v2         
+        with:
+          files: target/surefire-reports/TEST-*.xml
 
 
   Code_Coverage-Build:
