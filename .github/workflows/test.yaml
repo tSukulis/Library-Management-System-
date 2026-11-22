@@ -1,0 +1,117 @@
+name: Build-Deploy
+
+on:
+  push:
+    branches: [main]
+    paths-ignore:
+      - '**/*.md'
+  pull_request:
+    branches: [main]
+    paths-ignore:
+      - '**/*.md'
+
+jobs:
+  Test:
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
+
+    runs-on: ${{matrix.os}}
+    permissions: 
+      contents: read
+      checks: write
+      pull-requests: write
+
+    steps:
+      - name: checkout repo
+        uses: actions/checkout@v7
+        
+      - name: set up java
+        uses: actions/setup-java@v6
+        with:
+          distribution: temurin
+          java-version: '21'
+
+      - name: Test
+        run: mvn -B test --file pom.xml
+
+
+      - name: Publish Test Results
+        uses: EnricoMi/publish-unit-test-result-action@v2
+        if: (!cancelled())
+        with:
+          files: 
+            target/surefire-reports/TEST-*.xml
+
+
+  Code_Coverage-Build:
+    needs: Test
+    if: github.event_name == 'push'
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: checkout repo
+        uses: actions/checkout@v7
+
+      - name: set up java
+        uses: actions/setup-java@v6
+        with:
+          distribution: temurin
+          java-version: '21'
+
+      - name: Build - jacoco xml
+        run: mvn -B verify --file pom.xml
+
+      - name: Upolad Jar
+        uses: actions/upload-artifact@v7
+        with:
+          name: Library_jar
+          path: target/*.jar
+          if-no-files-found: error
+
+
+  Deploy:
+    needs: Code_Coverage-Build
+    if: github.event_name == 'push'
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: checkout repo
+        uses: actions/checkout@v7
+
+      - name: set up java
+        uses: actions/setup-java@v6
+        with:
+          distribution: temurin
+          java-version: '21'
+          server-id: azure
+          sever-username-env-var: MAVEN_USERNAME
+          server-password-env-var: MAVEN_TOKEN
+          settings-path: ${{github.workspace}}
+      
+      - name: Download artifact
+        uses: actions/download-artifact@v8
+        with:
+          path: target/
+
+      - name: Deploy artifact
+        run: |
+          mvn -B deploy:deploy-file \
+            -DskipTests \
+            -Dfile=target/*.jar \
+            -Dpomfile=pom.xml \
+            -DrepositoryId=azure \
+            -Durl="https://pkgs.dev.azure.com/tsoukoulis/8df8af67-225d-480d-b726-16b24bfd71cd/_packaging/maven-test/maven/v1" \
+            -s "$GITHUB_WORKSPACE/settings.xml" \
+        env: 
+          MAVEN_PASSWORD: ${{secrets.MAVEN_PASSWORD}}
+          MAVEN_TOKEN: ${{secrets.MAVEN_TOKEN}}
+          
+                
+
+
+
+
+
+        
+    
