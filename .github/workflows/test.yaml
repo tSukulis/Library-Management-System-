@@ -115,7 +115,7 @@ jobs:
         run: |
           mvn -B deploy:deploy-file \
             -DskipTests \
-            -Dfile=target/*.jar \
+            -Dfile=target/Library_Management_System-1.0-SNAPSHOT.jar \
             -DpomFile=pom.xml \
             -DrepositoryId=azure \
             -Durl="https://pkgs.dev.azure.com/tsoukoulis/8df8af67-225d-480d-b726-16b24bfd71cd/_packaging/maven-test/maven/v1" \
