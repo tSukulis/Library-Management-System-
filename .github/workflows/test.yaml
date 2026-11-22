@@ -9,6 +9,7 @@ on:
     branches: [main]
     paths-ignore:
       - '**/*.md'
+  workflow_dispatch: 
 
 jobs:
   Test:
@@ -31,6 +32,7 @@ jobs:
         with:
           distribution: temurin
           java-version: '21'
+          cache: maven
 
       - name: Test
         run: mvn -B test --file pom.xml
@@ -38,7 +40,7 @@ jobs:
 
       - name: Publish Test Results (ubuntu)
         uses: EnricoMi/publish-unit-test-result-action@v2
-        if: ${{ !cancelled() && runner.os == 'linux'}}
+        if: ${{ !cancelled() && runner.os == 'Linux'}}
         with:
           files: target/surefire-reports/TEST-*.xml
           check_name: Test Results (${{ matrix.os}})
@@ -52,7 +54,7 @@ jobs:
 
 
       - name: Publish Test Results (windows)
-        if: ${{ !cancelled() && runner.os == 'windows' }}
+        if: ${{ !cancelled() && runner.os == 'Windows' }}
         uses: EnricoMi/publish-unit-test-result-action/windows@v2         
         with:
           files: target/surefire-reports/TEST-*.xml
@@ -62,7 +64,6 @@ jobs:
 
   Code_Coverage-Build:
     needs: Test
-    if: github.event_name == 'push'
     runs-on: ubuntu-latest
     
     steps:
@@ -74,11 +75,13 @@ jobs:
         with:
           distribution: temurin
           java-version: '21'
+          cache: maven
 
       - name: Build - jacoco xml
         run: mvn -B verify --file pom.xml
 
       - name: Upolad Jar
+        if: github.event_name == 'push'
         uses: actions/upload-artifact@v7
         with:
           name: Library_jar
@@ -100,6 +103,7 @@ jobs:
         with:
           distribution: temurin
           java-version: '21'
+          cache: maven
           server-id: azure
           server-username-env-var: MAVEN_USERNAME
           server-password-env-var: MAVEN_TOKEN
@@ -114,7 +118,6 @@ jobs:
       - name: Deploy artifact
         run: |
           mvn -B deploy:deploy-file \
-            -DskipTests \
             -Dfile=target/Library_Management_System-1.0-SNAPSHOT.jar \
             -DpomFile=pom.xml \
             -DrepositoryId=azure \
