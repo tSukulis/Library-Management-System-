@@ -38,22 +38,26 @@ jobs:
 
       - name: Publish Test Results (ubuntu)
         uses: EnricoMi/publish-unit-test-result-action@v2
-        if: ${{ !cancelled() && runner.os == 'ubuntu-latest'}}
+        if: ${{ !cancelled() && runner.os == 'linux'}}
         with:
-          files: 
-            target/surefire-reports/TEST-*.xml
+          files: target/surefire-reports/TEST-*.xml
+          check_name: Test Results (${{ matrix.os}})
 
       - name: Publish Test Results (macOS)
         if: ${{ !cancelled() && runner.os == 'macOS' }}
         uses: EnricoMi/publish-unit-test-result-action/macos@v2
         with:
           files: target/surefire-reports/TEST-*.xml
+          check_name: Test Results (${{ matrix.os}})
+
 
       - name: Publish Test Results (windows)
-        if: ${{ !cancelled() && runner.os == 'windows-latest' }}
+        if: ${{ !cancelled() && runner.os == 'windows' }}
         uses: EnricoMi/publish-unit-test-result-action/windows@v2         
         with:
           files: target/surefire-reports/TEST-*.xml
+          check_name: Test Results (${{ matrix.os}})
+
 
 
   Code_Coverage-Build:
@@ -97,13 +101,14 @@ jobs:
           distribution: temurin
           java-version: '21'
           server-id: azure
-          sever-username-env-var: MAVEN_USERNAME
+          server-username-env-var: MAVEN_USERNAME
           server-password-env-var: MAVEN_TOKEN
           settings-path: ${{github.workspace}}
       
       - name: Download artifact
         uses: actions/download-artifact@v8
         with:
+          name: Library_jar
           path: target/
 
       - name: Deploy artifact
@@ -111,12 +116,12 @@ jobs:
           mvn -B deploy:deploy-file \
             -DskipTests \
             -Dfile=target/*.jar \
-            -Dpomfile=pom.xml \
+            -DpomFile=pom.xml \
             -DrepositoryId=azure \
             -Durl="https://pkgs.dev.azure.com/tsoukoulis/8df8af67-225d-480d-b726-16b24bfd71cd/_packaging/maven-test/maven/v1" \
-            -s "$GITHUB_WORKSPACE/settings.xml" \
+            -s "$GITHUB_WORKSPACE/settings.xml"
         env: 
-          MAVEN_PASSWORD: ${{secrets.MAVEN_PASSWORD}}
+          MAVEN_USERNAME: ${{secrets.MAVEN_USERNAME}}
           MAVEN_TOKEN: ${{secrets.MAVEN_TOKEN}}
           
                 
