@@ -122,6 +122,12 @@ jobs:
             server-password-env-var: MAVEN_TOKEN
             settings-path: ${{github.workspace}}
 
+        - name: Download artifact
+          uses: actions/download-artifact@v8
+          with:
+            name: app.jar
+            path: target/
+            
         - name: Deploy
           run: |
             mvn -B deploy:deploy-file \
