@@ -56,6 +56,15 @@ jobs:
       - name: Test
         run: mvn -B test --file pom.xml
 
+      - name: Upload jacoco.exec
+        if: matrix.os == 'Linux'
+        uses: actions/upload-artifact@v7
+        with:
+          name: jacoco.exec
+          path: target/site/jacoco.xml
+          if-no-files-found: error
+
+
 
       - name: Publish Test Results (ubuntu)
         uses: EnricoMi/publish-unit-test-result-action@v2
