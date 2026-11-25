@@ -56,7 +56,7 @@ jobs:
       - name: Test
         run: mvn -B test --file pom.xml
 
-      - name: Upload jacoco.exec
+      - name: Upload jacoco.xml
         if: matrix.os == 'Linux'
         uses: actions/upload-artifact@v7
         with:
