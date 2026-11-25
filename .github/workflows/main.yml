@@ -30,10 +30,15 @@ jobs:
 
 
   Tests-Code_Coverage:
+    needs: Linter
     strategy:
       matrix:
         os: [ubuntu-latest, windows-latest, macos-latest]
     runs-on: ${{matrix.os}}
+    permissions: 
+      contents: read
+      checks: write
+      pull-requests: write
 
     steps:
       - name: checkout repo
@@ -60,7 +65,7 @@ jobs:
         uses: EnricoMi/publish-unit-test-result-action@v2
         if: ${{ !cancelled() && runner.os == 'Linux'}}
         with:
-          files: target/surefire-reports/**/*.xml
+          files: target/surefire-reports/TEST-*.xml
           check_name: Test Results (${{ matrix.os}})
 
 
@@ -68,7 +73,7 @@ jobs:
         uses: EnricoMi/publish-unit-test-result-action@v2
         if: ${{ !cancelled() && runner.os == 'Windows'}}
         with:
-          files: target/surefire-reports/**/*.xml
+          files: target/surefire-reports/TEST-*.xml
           check_name: Test Results (${{ matrix.os}})
 
 
@@ -76,7 +81,7 @@ jobs:
         uses: EnricoMi/publish-unit-test-result-action@v2
         if: ${{ !cancelled() && runner.os == 'macOS'}}
         with:
-          files: target/surefire-reports/**/*.xml           
+          files: target/surefire-reports/TEST-*.xml           
           check_name: Test Results (${{ matrix.os}})
 
   Build-Jar:
@@ -105,7 +110,9 @@ jobs:
 
 
   Deploy:
-      runs-on: ubuntu-22.04
+      needs: Build-Jar
+      if: github.event_name == 'push'
+      runs-on: ubuntu-latest
 
       steps:
         - name: checkout repo
