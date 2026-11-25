@@ -22,11 +22,11 @@ public class DataLoader {
      * @param bm the book manager
      * @param booksPath the path of the JSON file
      */
-    public static void loadBooks(BookManager bm, Path booksPath){
+    public static void loadBooks(BookManager bm, Path booksPath) {
         try {
             File jsonFile = booksPath.toFile();
-            List<Book> books = mapper.readValue(jsonFile, new TypeReference<List<Book>>() {});
-            for(Book book: books){
+            List<Book> books = mapper.readValue(jsonFile, new TypeReference<List<Book>>() { });
+            for (Book book: books) {
                 bm.addBook(book);
             }
             System.out.println("Books loaded");
@@ -40,11 +40,11 @@ public class DataLoader {
      * @param mm the member manager
      * @param membersPath the path of the JSON file
      */
-    public static void loadMembers(MemberManager mm, Path membersPath){
+    public static void loadMembers(MemberManager mm, Path membersPath) {
         try {
             File membersJson = membersPath.toFile();
-            List<Member> members = mapper.readValue(membersJson, new TypeReference<List<Member>>() {});
-            for(Member member: members){
+            List<Member> members = mapper.readValue(membersJson, new TypeReference<List<Member>>() { });
+            for (Member member: members) {
                 mm.addMember(member);
             }
         } catch (IOException e) {
@@ -60,10 +60,10 @@ public class DataLoader {
      * @param mm the member manager
      * @param loansPath the path to the JSON file
      */
-    public static void loadLoansJson(LoanManager lm, BookManager bm, MemberManager mm, Path loansPath){
+    public static void loadLoansJson(LoanManager lm, BookManager bm, MemberManager mm, Path loansPath) {
         try {
             File loansFile = loansPath.toFile();
-            List<LoanJson> loans = mapper.readValue(loansFile, new TypeReference<List<LoanJson>>(){});
+            List<LoanJson> loans = mapper.readValue(loansFile, new TypeReference<List<LoanJson>>() { });
             loadLoans(loans, lm, bm, mm);
         } catch (IOException e) {
             System.out.println(e.getMessage());
@@ -79,16 +79,16 @@ public class DataLoader {
      * @param bm the book manager
      * @param mm the member manager
      */
-    private static void loadLoans(List<LoanJson> loansJson, LoanManager lm, BookManager bm, MemberManager mm){
-        if(loansJson == null){
+    private static void loadLoans(List<LoanJson> loansJson, LoanManager lm, BookManager bm, MemberManager mm) {
+        if (loansJson == null) {
             System.out.println("Could not load Loans. Starting with an empty loan list");
             return;
         }
-        for(LoanJson loan: loansJson){
+        for (LoanJson loan: loansJson) {
             Book book = bm.findBookById(loan.getBookId());
             Member member = mm.findMemberById(loan.getMemberId());
 
-            if(book == null || member == null) {
+            if (book == null || member == null) {
                 System.out.println("Loan skipped: referenced book or member was not found.");
                 continue;
             }
@@ -97,7 +97,7 @@ public class DataLoader {
                 continue;
             }
 
-            if(!loan.isReturned() && lm.getNumberOfActiveLoansByMemberId(loan.getMemberId()) >= 5) {
+            if (!loan.isReturned() && lm.getNumberOfActiveLoansByMemberId(loan.getMemberId()) >= 5) {
                    System.out.println("Loan skipped: member already has 5 active loans.");
                    continue;
             }
@@ -105,7 +105,7 @@ public class DataLoader {
             try {
                 Loan l = new Loan(book, member, loan.getBorrowDate(), loan.getDueDate(), loan.isReturned());
                 lm.addLoan(l);
-            }catch (IllegalArgumentException e){
+            } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
         }

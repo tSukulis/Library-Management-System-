@@ -14,7 +14,8 @@ public class LoanJson {
     /**
      * Creates a new empty LoanJson.
      */
-    public LoanJson(){}
+    public LoanJson() {
+    }
 
     /**
      * Creates a LoanJson and populates its fields
@@ -25,7 +26,7 @@ public class LoanJson {
      * @param dueDate the due date of the loan
      * @param returned whether the loan has been returned
      */
-    public LoanJson(int bookId, int memberId, LocalDate borrowDate, LocalDate dueDate, boolean returned){
+    public LoanJson(int bookId, int memberId, LocalDate borrowDate, LocalDate dueDate, boolean returned) {
         this.bookId = bookId;
         this.memberId = memberId;
         this.borrowDate = borrowDate;

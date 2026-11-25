@@ -13,7 +13,7 @@ public class BookManager {
     /**
      * Creates an empty book manager.
      */
-    public BookManager(){
+    public BookManager() {
         books = new ArrayList<>();
     }
 
@@ -33,11 +33,13 @@ public class BookManager {
      * @throws IllegalArgumentException if the book is null or a book with the same id already exists
      */
     public void addBook(Book book) {
-        if (book == null)
+        if (book == null) {
             throw new IllegalArgumentException("Book cannot be null");
+        }
 
-        if(findBookById(book.getId()) != null)
+        if (findBookById(book.getId()) != null) {
             throw new IllegalArgumentException("Book with id " + book.getId() + " already exists.");
+        }
 
         books.add(book);
     }
@@ -51,16 +53,18 @@ public class BookManager {
      * @throws IllegalArgumentException if the book with bookId does not exist
      * @throws IllegalStateException if the book has an active loan
      */
-    public void deleteBookById(int bookId, LoanManager lm){
+    public void deleteBookById(int bookId, LoanManager lm) {
         Book book = findBookById(bookId);
-        if(book == null)
-            throw new IllegalArgumentException("Book with id: " +bookId + " could not be found");
+        if (book == null) {
+            throw new IllegalArgumentException("Book with id: " + bookId + " could not be found");
+        }
 
 
-        for(Loan loan: lm.getLoans()){
-            if(loan.getBook().equals(book)){
-                if(!loan.isReturned())
+        for (Loan loan: lm.getLoans()) {
+            if (loan.getBook().equals(book)) {
+                if (!loan.isReturned()) {
                     throw new IllegalStateException("Book cannot be deleted, it has active Loans");
+                }
             }
         }
 
@@ -87,11 +91,11 @@ public class BookManager {
      * @param title the search keyword
      * @return a list of matching books
      */
-    public List<Book> lookUpBooksByTitle(String title){
+    public List<Book> lookUpBooksByTitle(String title) {
         List<Book> result = new ArrayList<>();
-        for(Book book: books){
+        for (Book book: books) {
 
-            if(book.getTitle().toLowerCase().contains(title.toLowerCase())){
+            if (book.getTitle().toLowerCase().contains(title.toLowerCase())) {
                 result.add(book);
             }
         }
@@ -103,10 +107,10 @@ public class BookManager {
      *
      * @return a list with books that have available copies
      */
-    public List<Book> getBooksWithAvailableCopies(){
+    public List<Book> getBooksWithAvailableCopies() {
         List<Book> copies = new ArrayList<>();
-        for(Book book: books){
-            if(book.getAvailableCopies() > 0){
+        for (Book book: books) {
+            if (book.getAvailableCopies() > 0) {
                 copies.add(book);
             }
         }
@@ -119,10 +123,11 @@ public class BookManager {
      * @param id the id of the book
      * @return the matching book, or null if no book is found
      */
-    public Book findBookById(int id){
-        for(Book book: books){
-            if(book.getId() == id)
+    public Book findBookById(int id) {
+        for (Book book: books) {
+            if (book.getId() == id) {
                 return book;
+            }
         }
         return null;
     }
@@ -130,7 +135,7 @@ public class BookManager {
     /**
      * Sorts all books alphabetically by title.
      */
-    public void sortBooksByTitle(){
+    public void sortBooksByTitle() {
         Collections.sort(books);
     }
 

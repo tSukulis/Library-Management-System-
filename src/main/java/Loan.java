@@ -21,9 +21,10 @@ public class Loan {
      *
      * @throws IllegalArgumentException if book or member is null
      */
-    public Loan(Book book, Member member, LocalDate borrowDate, LocalDate dueDate, boolean returned){
-        if(book == null || member == null)
+    public Loan(Book book, Member member, LocalDate borrowDate, LocalDate dueDate, boolean returned) {
+        if (book == null || member == null) {
             throw new IllegalArgumentException("Loan cannot be done.");
+        }
 
         this.book = book;
         this.member = member;
@@ -46,7 +47,7 @@ public class Loan {
      *
      * @return the member associated with this loan
      */
-    public Member getMember(){
+    public Member getMember() {
         return member;
     }
 
@@ -63,7 +64,7 @@ public class Loan {
      * Returns whether this loan has been returned.
      * @return true if the loan has been returned, false otherwise
      */
-    public boolean isReturned(){
+    public boolean isReturned() {
         return returned;
     }
 
@@ -72,7 +73,7 @@ public class Loan {
      *
      * @return the date of the loan
      */
-    public LocalDate getBorrowDate(){
+    public LocalDate getBorrowDate() {
         return borrowDate;
     }
 
@@ -108,6 +109,7 @@ public class Loan {
      */
     @Override
     public String toString() {
-        return("Book: " + book +"\nMember: " + member +"\nBorrowDate: " + getBorrowDateToString() + "\nDueDate: " + getDueDateToString());
+        return ("Book: " + book + "\nMember: " + member
+                + "\nBorrowDate: " + getBorrowDateToString() + "\nDueDate: " + getDueDateToString());
     }
 }

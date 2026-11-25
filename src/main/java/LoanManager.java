@@ -12,7 +12,7 @@ public class LoanManager {
     /**
      * Creates a new loan manager
      */
-    public LoanManager(){
+    public LoanManager() {
         loans = new ArrayList<>();
     }
 
@@ -30,7 +30,7 @@ public class LoanManager {
      * Adds a new loan to the library
      * @param loan the loan to add
      */
-    public void addLoan(Loan loan){
+    public void addLoan(Loan loan) {
         this.loans.add(loan);
     }
 
@@ -41,12 +41,13 @@ public class LoanManager {
      * @param memberId the id of the member
      * @return the number of active loans of the member with id memberId
      */
-    public int getNumberOfActiveLoansByMemberId(int memberId){
+    public int getNumberOfActiveLoansByMemberId(int memberId) {
         int counter = 0;
-        for(Loan loan:loans) {
+        for (Loan loan:loans) {
             if (!loan.isReturned()) {
-                if (loan.getMember().getId() == memberId)
+                if (loan.getMember().getId() == memberId) {
                     counter++;
+                }
             }
         }
         return counter;
@@ -58,12 +59,13 @@ public class LoanManager {
      * @param memberId the id of the member
      * @return a list with the returned loans of the specified member
      */
-    public List<Loan> getReturnedLoansByMemberId(int memberId){
+    public List<Loan> getReturnedLoansByMemberId(int memberId) {
         List<Loan> returnedLoans = new ArrayList<>();
-        for(Loan loan:loans) {
+        for (Loan loan:loans) {
             if (loan.isReturned()) {
-                if (loan.getMember().getId() == memberId)
+                if (loan.getMember().getId() == memberId) {
                     returnedLoans.add(loan);
+                }
             }
         }
         return returnedLoans;
@@ -75,12 +77,13 @@ public class LoanManager {
      * @param memberId the id of the member
      * @return a list containing all the active loans of the specified member
      */
-    public List<Loan> getActiveLoansByMemberId(int memberId){
+    public List<Loan> getActiveLoansByMemberId(int memberId) {
         List<Loan> activeLoans = new ArrayList<>();
-        for(Loan loan:loans) {
+        for (Loan loan:loans) {
             if (!loan.isReturned()) {
-                if (loan.getMember().getId() == memberId)
+                if (loan.getMember().getId() == memberId) {
                     activeLoans.add(loan);
+                }
             }
         }
         return activeLoans;
@@ -92,11 +95,12 @@ public class LoanManager {
      * @param memberId the id of the member
      * @return a list containing all the loans of the specified member
      */
-    public List<Loan> getLoansByMemberId(int memberId){
+    public List<Loan> getLoansByMemberId(int memberId) {
         List<Loan> loansByMemberId = new ArrayList<>();
-        for(Loan loan: loans){
-            if(loan.getMember().getId() == memberId)
+        for (Loan loan: loans) {
+            if (loan.getMember().getId() == memberId) {
                 loansByMemberId.add(loan);
+            }
         }
         return loansByMemberId;
     }
@@ -106,11 +110,12 @@ public class LoanManager {
      *
      * @return a list containing all the active loans
      */
-    public List<Loan> getActiveLoans(){
+    public List<Loan> getActiveLoans() {
         List<Loan> activeLoans = new ArrayList<>();
-        for(Loan loan: loans){
-            if(!loan.isReturned())
+        for (Loan loan: loans) {
+            if (!loan.isReturned()) {
                 activeLoans.add(loan);
+            }
         }
         return activeLoans;
     }
@@ -120,10 +125,10 @@ public class LoanManager {
      *
      * @return a list containing all the returned loans
      */
-    public List<Loan> getReturnedLoans(){
+    public List<Loan> getReturnedLoans() {
         List<Loan> returnedLoans = new ArrayList<>();
-        for(Loan loan: loans){
-            if(loan.isReturned()){
+        for (Loan loan: loans) {
+            if (loan.isReturned()) {
                 returnedLoans.add(loan);
             }
         }
@@ -136,10 +141,10 @@ public class LoanManager {
      *
      * @return a list containing all overdue loans
      */
-    public List<Loan> getOverdueLoans(){
+    public List<Loan> getOverdueLoans() {
         List<Loan> overdueLoans = new ArrayList<>();
-        for(Loan loan: loans){
-            if (!loan.isReturned() && LocalDate.now().isAfter(loan.getDueDate())){
+        for (Loan loan: loans) {
+            if (!loan.isReturned() && LocalDate.now().isAfter(loan.getDueDate())) {
                 overdueLoans.add(loan);
             }
         }
@@ -152,11 +157,11 @@ public class LoanManager {
      *
      * @return a list containing all borrowed books
      */
-    public List<Book> getBorrowedBooks(){
+    public List<Book> getBorrowedBooks() {
         List<Loan> activeLoans = getActiveLoans();
         List<Book> borrowedBooks = new ArrayList<>();
-        for(Loan loan: activeLoans){
-            if(!borrowedBooks.contains(loan.getBook())) {
+        for (Loan loan: activeLoans) {
+            if (!borrowedBooks.contains(loan.getBook())) {
                 borrowedBooks.add(loan.getBook());
             }
         }
@@ -170,10 +175,10 @@ public class LoanManager {
      * @param memberId the member id
      * @return the matching active loan, or null if no loan is found
      */
-    public Loan getActiveLoanByBookIdAndMemberId(int bookId, int memberId){
-        for(Loan loan: loans){
-            if(loan.getBook().getId() == bookId && loan.getMember().getId() == memberId
-                && !loan.isReturned()){
+    public Loan getActiveLoanByBookIdAndMemberId(int bookId, int memberId) {
+        for (Loan loan: loans) {
+            if (loan.getBook().getId() == bookId && loan.getMember().getId() == memberId
+                && !loan.isReturned()) {
                 return loan;
             }
         }
@@ -192,20 +197,24 @@ public class LoanManager {
      * @throws IllegalStateException if the book has no available copies
      * @throws IllegalStateException if the member already has five active loans
      */
-    public void borrowBook(int bookId, int memberId, BookManager bm, MemberManager mm){
+    public void borrowBook(int bookId, int memberId, BookManager bm, MemberManager mm) {
         Book book = bm.findBookById(bookId);
         Member member = mm.findMemberById(memberId);
-        if (book == null)
+        if (book == null) {
             throw new IllegalArgumentException("Book with id: " + bookId + " could not be found");
+        }
 
-        if (member == null)
+        if (member == null) {
             throw new IllegalArgumentException("Member with Id: " + memberId + " could not be found");
+        }
 
-        if (book.getAvailableCopies() <= 0)
+        if (book.getAvailableCopies() <= 0) {
             throw new IllegalStateException("No available copies for books with Id: " + bookId);
+        }
 
-        if (getNumberOfActiveLoansByMemberId(memberId) >= 5)
+        if (getNumberOfActiveLoansByMemberId(memberId) >= 5) {
             throw new IllegalStateException("Member has already 5 loans.");
+        }
 
         LocalDate dueDate = LocalDate.now().plusDays(14);
         Loan loan = new Loan(book, member, LocalDate.now(), dueDate, false);
@@ -221,10 +230,11 @@ public class LoanManager {
      * @param memberId the member id
      * @throws IllegalArgumentException if the loan could not be found
      */
-    public void returnBook(int bookId, int memberId){
+    public void returnBook(int bookId, int memberId) {
         Loan loan = getActiveLoanByBookIdAndMemberId(bookId, memberId);
-        if(loan == null)
+        if (loan == null) {
             throw new IllegalArgumentException("Loan could not be found");
+        }
 
         loan.getBook().setAvailableCopies(loan.getBook().getAvailableCopies() + 1);
         loan.setReturned(true);

@@ -4,7 +4,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 /**
  * Represents a member of the library
  */
-public class Member implements Comparable<Member>{
+public class Member implements Comparable<Member> {
     private int id;
     private String name;
     private String email;
@@ -21,15 +21,18 @@ public class Member implements Comparable<Member>{
      * @throws IllegalArgumentException if the email is blank, null or not containing @
      */
     @JsonCreator
-    public Member(@JsonProperty("id") int id,@JsonProperty("name") String name,@JsonProperty("email") String email) {
-        if(id <= 0)
+    public Member(@JsonProperty("id") int id, @JsonProperty("name") String name, @JsonProperty("email") String email) {
+        if (id <= 0) {
             throw new IllegalArgumentException("Id should be positive: ");
+        }
 
-        if(name == null || name.isBlank())
+        if (name == null || name.isBlank()) {
             throw new IllegalArgumentException("Name cannot be null or empty.");
+        }
 
-        if(email == null || email.isBlank() || !email.contains("@"))
+        if (email == null || email.isBlank() || !email.contains("@")) {
             throw new IllegalArgumentException("Email cannot be null or blank or not containing @");
+        }
 
         this.id = id;
         this.name = name;
@@ -69,7 +72,7 @@ public class Member implements Comparable<Member>{
      *      name is less than, equal to, or greater than the other member's name
      */
     @Override
-    public int compareTo(Member other){
+    public int compareTo(Member other) {
         return this.name.compareToIgnoreCase(other.name);
     }
 
@@ -81,15 +84,18 @@ public class Member implements Comparable<Member>{
      * @return true if the objects are equal, false otherwise
      */
     @Override
-    public boolean equals(Object other){
-        if(this == other)
+    public boolean equals(Object other) {
+        if (this == other) {
             return true;
+        }
 
-        if(other == null)
+        if (other == null) {
             return false;
+        }
 
-        if(!(other instanceof Member))
+        if (!(other instanceof Member)) {
             return false;
+        }
 
         Member member = (Member) other;
 
@@ -101,7 +107,7 @@ public class Member implements Comparable<Member>{
      * @return the hash code
      */
     @Override
-    public int hashCode(){
+    public int hashCode() {
         return Integer.hashCode(id);
     }
 
@@ -111,6 +117,6 @@ public class Member implements Comparable<Member>{
      */
     @Override
     public String toString() {
-        return ("MemberId: " + id +", Name: " + name + ", Email: " + email);
+        return ("MemberId: " + id + ", Name: " + name + ", Email: " + email);
     }
 }

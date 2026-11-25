@@ -13,7 +13,7 @@ public class MemberManager {
     /**
      * Creates an empty member manager
      */
-    public MemberManager(){
+    public MemberManager() {
         members = new ArrayList<>();
     }
 
@@ -32,12 +32,14 @@ public class MemberManager {
      * @param member the member to add
      * @throws IllegalArgumentException if the member is null or if a member with the same id already exists
      */
-    public void addMember(Member member){
-        if(member == null)
+    public void addMember(Member member) {
+        if (member == null) {
             throw new IllegalArgumentException("Member cannot be null");
+        }
 
-        if(findMemberById(member.getId()) != null)
+        if (findMemberById(member.getId()) != null) {
             throw new IllegalArgumentException("Member with id " + member.getId() + " already exists");
+        }
 
         members.add(member);
     }
@@ -52,23 +54,25 @@ public class MemberManager {
      * @throws IllegalArgumentException if the member with memberId does not exist
      * @throws IllegalStateException if the member has active loans
      */
-    public void deleteMemberById(int memberId, LoanManager lm){
+    public void deleteMemberById(int memberId, LoanManager lm) {
         Member member = findMemberById(memberId);
-        if(member == null)
+        if (member == null) {
             throw new IllegalArgumentException("Member with id: " + memberId + " could not be found");
+        }
 
 
-        for(Loan loan: lm.getLoans()){
-            if(loan.getMember().equals(member)){
-                if(!loan.isReturned())
+        for (Loan loan: lm.getLoans()) {
+            if (loan.getMember().equals(member)) {
+                if (!loan.isReturned()) {
                     throw new IllegalStateException("Member cannot be deleted, has active loans");
+                }
             }
         }
 
 
         Iterator<Member> memberIterator = members.iterator();
-        while(memberIterator.hasNext()){
-            if(memberIterator.next().equals(member)){
+        while (memberIterator.hasNext()) {
+            if (memberIterator.next().equals(member)) {
                 memberIterator.remove();
                 break;
             }
@@ -76,7 +80,7 @@ public class MemberManager {
 
         Iterator<Loan> loanIterator = lm.getLoans().iterator();
         while (loanIterator.hasNext()) {
-            if (loanIterator.next().getMember().getId() == memberId){
+            if (loanIterator.next().getMember().getId() == memberId) {
                 loanIterator.remove();
             }
         }
@@ -88,10 +92,10 @@ public class MemberManager {
      * @param name the search keyword
      * @return a list of matching members
      */
-    public List<Member> lookUpMembersByName(String name){
+    public List<Member> lookUpMembersByName(String name) {
         List<Member> result = new ArrayList<>();
-        for(Member member: members){
-            if(member.getName().toLowerCase().contains(name.toLowerCase())){
+        for (Member member: members) {
+            if (member.getName().toLowerCase().contains(name.toLowerCase())) {
                 result.add(member);
             }
         }
@@ -104,10 +108,11 @@ public class MemberManager {
      * @param id the id of the member
      * @return the matching member or null if no member is found
      */
-    public Member findMemberById(int id){
-        for(Member member: members){
-            if(member.getId() == id)
+    public Member findMemberById(int id) {
+        for (Member member: members) {
+            if (member.getId() == id) {
                 return member;
+            }
         }
         return null;
     }
@@ -115,7 +120,7 @@ public class MemberManager {
     /**
      * Sorts all members alphabetically by name
      */
-    public void sortMembersByName(){
+    public void sortMembersByName() {
         Collections.sort(members);
     }
 

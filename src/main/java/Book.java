@@ -5,7 +5,7 @@ import java.time.LocalDate;
 /**
  * Represents a book in the library
  */
-public class Book implements Comparable<Book>{
+public class Book implements Comparable<Book> {
     private int id;
     private String title;
     private int year;
@@ -34,22 +34,27 @@ public class Book implements Comparable<Book>{
             @JsonProperty("title") String title,
             @JsonProperty("year") int year,
             @JsonProperty("totalCopies") int totalCopies,
-            @JsonProperty("availableCopies") int availableCopies){
-        if(id <= 0)
+            @JsonProperty("availableCopies") int availableCopies) {
+        if (id <= 0) {
             throw new IllegalArgumentException("Id should be positive");
+        }
 
-        if(title == null || title.isBlank())
+        if (title == null || title.isBlank()) {
             throw new IllegalArgumentException("Title cannot be null or blank");
+        }
 
         int currentYear = LocalDate.now().getYear();
-        if(year < 1400 || year > currentYear)
+        if (year < 1400 || year > currentYear) {
             throw new IllegalArgumentException("Acceptable range of year is between 1400 and " + currentYear);
+        }
 
-        if(totalCopies <= 0)
+        if (totalCopies <= 0) {
             throw new IllegalArgumentException("Total copies cannot be zero or negative.");
+        }
 
-        if(availableCopies < 0 || availableCopies > totalCopies)
+        if (availableCopies < 0 || availableCopies > totalCopies) {
             throw new IllegalArgumentException("Available copies must be between 0 and totalCopies");
+        }
 
 
         this.id = id;
@@ -112,8 +117,9 @@ public class Book implements Comparable<Book>{
      * @throws IllegalArgumentException if available copies are smaller than zero or greater than the total copies
      */
     public void setAvailableCopies(int availableCopies) {
-        if(availableCopies < 0 || availableCopies > totalCopies)
+        if (availableCopies < 0 || availableCopies > totalCopies) {
             throw new IllegalArgumentException("Available copies must be between 0 and totalCopies");
+        }
 
         this.availableCopies = availableCopies;
     }
@@ -126,7 +132,7 @@ public class Book implements Comparable<Book>{
      *     title is less than, equal to, or greater than the other book's title
      */
     @Override
-    public int compareTo(Book other){
+    public int compareTo(Book other) {
         return this.title.compareToIgnoreCase(other.title);
 
     }
@@ -140,15 +146,18 @@ public class Book implements Comparable<Book>{
      * @return true if the objects are equal; false otherwise
      */
     @Override
-    public boolean equals(Object other){
-        if(this == other)
+    public boolean equals(Object other) {
+        if (this == other) {
             return true;
+        }
 
-        if(other == null)
+        if (other == null) {
             return false;
+        }
 
-        if(!(other instanceof Book))
+        if (!(other instanceof Book)) {
             return false;
+        }
 
         Book book = (Book) other;
 
@@ -160,7 +169,7 @@ public class Book implements Comparable<Book>{
      * @return the hash code
      */
     @Override
-    public int hashCode(){
+    public int hashCode() {
         return Integer.hashCode(id);
     }
 
@@ -169,9 +178,9 @@ public class Book implements Comparable<Book>{
      * @return a string representation of the book
      */
     @Override
-    public String toString(){
+    public String toString() {
         return ("BookId: " + id + ", Title: " + title + ", Year: " + year
-                +", available Copies: " + availableCopies);
+                + ", available Copies: " + availableCopies);
     }
 
 }

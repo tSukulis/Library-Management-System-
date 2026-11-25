@@ -19,7 +19,7 @@ public class Main {
      *
      * @param args command-line arguments (not used)
      */
-    public static void main(String[] args){
+    public static void main(String[] args) {
         BookManager bm = new BookManager();
         MemberManager mm = new MemberManager();
         LoanManager lm = new LoanManager();

@@ -12,7 +12,7 @@ import java.util.List;
 public class DataStore {
 
     private static final ObjectMapper mapper;
-    static{
+    static {
         mapper = new ObjectMapper();
         mapper.registerModule(new JavaTimeModule());
     }
@@ -25,7 +25,7 @@ public class DataStore {
      * @param bm the book manager containing the books
      * @param booksPath the destination JSON file
      */
-    public static void storeBooks(BookManager bm, Path booksPath){
+    public static void storeBooks(BookManager bm, Path booksPath) {
         try {
             File file = booksPath.toFile();
             mapper.writerWithDefaultPrettyPrinter().writeValue(file, bm.getBooks());
@@ -42,12 +42,12 @@ public class DataStore {
      * @param mm the member manager containing the members
      * @param membersPath the destination JSON file
      */
-    public static void storeMembers(MemberManager mm, Path membersPath){
-        try{
+    public static void storeMembers(MemberManager mm, Path membersPath) {
+        try {
             File file = membersPath.toFile();
-            mapper.writerWithDefaultPrettyPrinter().writeValue(file,mm.getMembers());
+            mapper.writerWithDefaultPrettyPrinter().writeValue(file, mm.getMembers());
             System.out.println("Members stored  successfully.");
-        }catch (IOException e){
+        } catch (IOException e) {
             System.out.println("Members could not be stored");
         }
     }
@@ -58,19 +58,19 @@ public class DataStore {
      * @param lm the loan manager containing the loans
      * @param loansPath the destination of the JSON file
      */
-    public static void storeLoans(LoanManager lm, Path loansPath){
+    public static void storeLoans(LoanManager lm, Path loansPath) {
         List<LoanJson> list = new ArrayList<>();
-        for(Loan loan: lm.getLoans()){
+        for (Loan loan: lm.getLoans()) {
             int bookId = loan.getBook().getId();
             int memberId = loan.getMember().getId();
             LoanJson l = new LoanJson(bookId, memberId, loan.getBorrowDate(), loan.getDueDate(), loan.isReturned());
             list.add(l);
         }
-        try{
+        try {
             File file = loansPath.toFile();
             mapper.writerWithDefaultPrettyPrinter().writeValue(file, list);
             System.out.println("Loans stored successfully");
-        } catch (IOException e){
+        } catch (IOException e) {
             System.out.println("Loans could not be stored");
         }
     }
