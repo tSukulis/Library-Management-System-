@@ -52,7 +52,7 @@ jobs:
           java-version: '21'
 
       - name: Run Tests-Code_Coverage
-        run: mvn -B Test --file pom.xml
+        run: mvn -B test --file pom.xml
 
       - name: upload artifact
         uses: actions/upload-artifact@v7
@@ -72,6 +72,7 @@ jobs:
         if: (!cancelled() && runner.os == 'Windows')
         with:
           files: target/surefire-reports/TEST-*.xml
+
             
   Build-Jar:
     needs: Test-Code_Coverage
