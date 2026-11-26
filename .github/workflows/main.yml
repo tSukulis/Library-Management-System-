@@ -55,20 +55,28 @@ jobs:
         run: mvn -B test --file pom.xml
 
       - name: upload artifact
+        if: runner.os == 'Linux'
         uses: actions/upload-artifact@v7
         with:
           name: jacoco.xml
           path: target/site/jacoco/jacoco.xml
 
 
-      - name: Publish Test Results (macOS)
+      - name: Publish Test Results (Linux)
         uses: EnricoMi/publish-unit-test-result-action@v2
+        if: (!cancelled() && runner.os == 'Linux')
+        with:
+          files: target/surefire-reports/TEST-*.xml
+
+
+      - name: Publish Test Results (macOS)
+        uses: EnricoMi/publish-unit-test-result-action/macos@v2
         if: (!cancelled() && runner.os == 'macOS')
         with:
           files: target/surefire-reports/TEST-*.xml
 
       - name: Publish Test Results (WIindows)
-        uses: EnricoMi/publish-unit-test-result-action@v2
+        uses: EnricoMi/publish-unit-test-result-action/windows@v2        
         if: (!cancelled() && runner.os == 'Windows')
         with:
           files: target/surefire-reports/TEST-*.xml
