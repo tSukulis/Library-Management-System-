@@ -45,6 +45,8 @@ jobs:
     steps:
       - name: checkout repo
         uses: actions/checkout@v7
+        with:
+          fetch-depth: 0
         
       - name: set up java
         uses: actions/setup-java@v6
@@ -53,18 +55,16 @@ jobs:
           java-version: '21'
           cache: maven
 
-      - name: Test
+      - name: Test and coverage (Ubuntu)
+        if: runner.os == 'Linux'
         run: mvn -B test --file pom.xml
 
-      - name: Upload jacoco.xml
-        if: matrix.os == 'Linux'
-        uses: actions/upload-artifact@v7
-        with:
-          name: jacoco.xml
-          path: target/site/jacoco.xml
-          if-no-files-found: error
+      - name: Test (Windows and macOS)
+        if: runner.os != 'Linux'
+        run: mvn -B test -Djacoco.skip=true --file pom.xml
 
       - name: SonarQube analysis
+        if: runner.os == 'Linux'
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         run: mvn -B sonar:sonar
@@ -110,7 +110,7 @@ jobs:
           cache: maven
 
       - name: Build jar
-        run: mvn -B -DskipTests verify --file pom.xml
+        run: mvn -B -DskipTests -Djacoco.skip=true verify --file pom.xml
 
       - name: Upolad Jar
         if: github.event_name == 'push'
