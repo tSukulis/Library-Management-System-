@@ -24,6 +24,7 @@ jobs:
         with:
           distribution: temurin
           java-version: '21'
+          cache: maven
 
       - name: Linter
         run: mvn -B checkstyle:check
@@ -50,16 +51,18 @@ jobs:
         with:
           distribution: temurin
           java-version: '21'
+          cache: maven
 
       - name: Run Tests-Code_Coverage
         run: mvn -B test --file pom.xml
 
-      - name: upload artifact
-        if: runner.os == 'Linux'
+      - name: upload jacoco.xml
+        if: matrix.os == 'Linux'
         uses: actions/upload-artifact@v7
         with:
           name: jacoco.xml
           path: target/site/jacoco/jacoco.xml
+          if-no-files-found: error
 
 
       - name: Publish Test Results (Linux)
@@ -67,6 +70,7 @@ jobs:
         if: (!cancelled() && runner.os == 'Linux')
         with:
           files: target/surefire-reports/TEST-*.xml
+          name: Test Results (${{matrix.os}})
 
 
       - name: Publish Test Results (macOS)
@@ -74,12 +78,14 @@ jobs:
         if: (!cancelled() && runner.os == 'macOS')
         with:
           files: target/surefire-reports/TEST-*.xml
+          name: Test Results (${{matrix.os}})
 
       - name: Publish Test Results (WIindows)
         uses: EnricoMi/publish-unit-test-result-action/windows@v2        
         if: (!cancelled() && runner.os == 'Windows')
         with:
           files: target/surefire-reports/TEST-*.xml
+          name: Test Results (${{matrix.os}})
 
             
   Build-Jar:
@@ -95,6 +101,7 @@ jobs:
         with:
           distribution: temurin
           java-version: '21'
+          cache: maven
 
       - name: Build Jar
         run: mvn -B -DskipTests verify --file pom.xml
@@ -104,6 +111,7 @@ jobs:
         with:
           name: app.jar
           path: target/Library_Management_System-1.0-SNAPSHOT.jar
+          if-no-files-found: error
 
 
 
@@ -121,6 +129,7 @@ jobs:
         with:
           distribution: temurin
           java-version: '21'
+          cache: maven
           server-username-env-var: MAVEN_USERNAME
           server-password-env-var: MAVEN_TOKEN
           server-id: azure
