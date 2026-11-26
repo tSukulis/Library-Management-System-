@@ -64,6 +64,10 @@ jobs:
           path: target/site/jacoco.xml
           if-no-files-found: error
 
+      - name: SonarQube analysis
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        run: mvn -B sonar:sonar
 
 
       - name: Publish Test Results (ubuntu)
