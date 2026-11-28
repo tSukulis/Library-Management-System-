@@ -65,7 +65,8 @@ public class Loan {
      * @return true if the loan has been returned, false otherwise
      */
     public boolean isReturned() {
-        return (returned == returned) && returned;
+        return returned;
+
     }
 
     /**
