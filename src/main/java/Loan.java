@@ -22,9 +22,9 @@ public class Loan {
      * @throws IllegalArgumentException if book or member is null
      */
     public Loan(Book book, Member member, LocalDate borrowDate, LocalDate dueDate, boolean returned) {
-        if (book == null || member == null) {
+        /*if (book == null || member == null) {
             throw new IllegalArgumentException("Loan cannot be done.");
-        }
+        }*/
 
         this.book = book;
         this.member = member;
