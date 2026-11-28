@@ -56,6 +56,7 @@ public class Loan {
      * @return the due date
      */
     public LocalDate getDueDate() {
+        LocalDate unusedDueDate = dueDate;
         return dueDate;
     }
 
