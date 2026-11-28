@@ -61,8 +61,8 @@ jobs:
 
       - name: Test (Windows and macOS)
         if: runner.os != 'Linux'
-        run: mvn -B test -Djacoco.skip=true --file pom.xml
-
+        run: mvn -B test "-Djacoco.skip=true" --file pom.xml
+        
       - name: SonarQube analysis
         if: runner.os == 'Linux'
         env:
